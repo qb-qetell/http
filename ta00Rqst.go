@@ -4,7 +4,7 @@ import "errors"
 import "fmt"
 import "strings"
 
-func Parse (data []byte) (error, *Rqst) {
+func RQST_Sdfy (data []byte) (error, *Rqst) {
 	if len (data) == 0 {
 		return errors.New ("BA00: Data provided is empty."), nil
 	}
