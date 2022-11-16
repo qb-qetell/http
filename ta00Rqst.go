@@ -51,7 +51,6 @@ func RQST_Sdfy (data []byte) (error, *Rqst) {
 				break
 			}
 		}
-		fmt.Println (string (data [lastExtn:extn]))
 		_ca50 := string (data [lastExtn:extn])
 		_ca50  = strings.Trim (_ca50, " 	")
 		_ca50  = strings.ReplaceAll (_ca50, "\r", "")
