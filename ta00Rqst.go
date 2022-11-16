@@ -51,14 +51,16 @@ func RQST_Sdfy (data []byte) (error, *Rqst) {
 				break
 			}
 		}
+		fmt.Println (string (data [lastExtn:extn]))
 		_ca50 := string (data [lastExtn:extn])
+		_ca50  = strings.Trim (_ca50, " 	")
 		_ca50  = strings.ReplaceAll (_ca50, "\r", "")
 		_ca50  = strings.ReplaceAll (_ca50, "\n", "")
 		if _ca50 == "" {
 			break
 		}
 		prtsCB00 := strings.SplitN (_ca50, ": ", 2)
-		if len (prtsCB00) != 2 {
+		if len (prtsCB00) < 2 {
 			_da00 := fmt.Sprintf ("An header '%s' is invalid.",
 				string (data [lastExtn:extn]),
 			)
