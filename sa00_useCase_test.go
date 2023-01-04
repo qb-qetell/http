@@ -11,6 +11,7 @@ func Test_ (t *testing.T) {
 	Postman-Token: 2e0c15a6-a8bc-4362-bcfb-cdedc50119d3
 	Host: localhost:20033
 	Accept-Encoding: gzip, deflate, br
+	Cookie: Cookie_1=value1; Cookie_2=value2; Cookie_3=value3
 	Connection: keep-alive
 	Content-Length: 211844
 	
@@ -24,8 +25,10 @@ func Test_ (t *testing.T) {
 	fmt.Println (">>>> path:",          _bb00.Path)
 	fmt.Println (">>>> vrsn:",          _bb00.Vrsn)
 	fmt.Println (">>>> hdrr:",          _bb00.Hdrr)
-	fmt.Println (">>>> vlll:",      _bb00.HdrrVlll)
+	fmt.Println (">>>> vlll:",      _bb00.HdrrVlxx)
 	fmt.Println (">>>> core:", string (_bb00.Core))
+	fmt.Println (">>>> cnxx:",          _bb00.Ckxx)
+	fmt.Println (">>>> cvxx:",      _bb00.CkxxVlxx)
 	/*--1--*/
 	_ca00 :=  RSPN_Estb ()
 	_ca00.Vrsn = "2.0"
@@ -48,6 +51,6 @@ func Test_ (t *testing.T) {
 	fmt.Println (">>>> path:",          _db00.Path)
 	fmt.Println (">>>> vrsn:",          _db00.Vrsn)
 	fmt.Println (">>>> hdrr:",          _db00.Hdrr)
-	fmt.Println (">>>> vlll:",      _db00.HdrrVlll)
+	fmt.Println (">>>> vlll:",      _db00.HdrrVlxx)
 	fmt.Println (">>>> core:", string (_db00.Core))
 }
