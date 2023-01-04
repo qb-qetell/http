@@ -2,6 +2,7 @@ package http
 
 import "errors"
 import "fmt"
+import "regexp"
 import "strings"
 
 func RQST_Sdfy (data []byte) (error, *Rqst) {
@@ -28,8 +29,10 @@ func RQST_Sdfy (data []byte) (error, *Rqst) {
 		return errors.New (_ca00), nil
 	}
 	rqst := &Rqst {
-		Hdrr:     make ([]string, 0),
-		HdrrVlll: make (map[string]string),
+		Hdrr:     make ([]string,       0),
+		HdrrVlxx: make (map[string]string),
+		Ckxx:     make ([]string,       0),
+		CkxxVlxx: make (map[string]string),
 	}
 	rqst.Mthd = prtsBB00 [0]
 	rqst.Path = prtsBB00 [1]
@@ -66,8 +69,8 @@ func RQST_Sdfy (data []byte) (error, *Rqst) {
 			return errors.New (_da00), nil
 		}
 		rqst.Hdrr = append (rqst.Hdrr, prtsCB00 [0])
-		rqst.HdrrVlll [prtsCB00 [0]] = strings.ReplaceAll (prtsCB00 [1], "\r", "")
-		rqst.HdrrVlll [prtsCB00 [0]] = strings.ReplaceAll (prtsCB00 [1], "\n", "")
+		rqst.HdrrVlxx [prtsCB00 [0]] = strings.ReplaceAll (prtsCB00 [1], "\r", "")
+		rqst.HdrrVlxx [prtsCB00 [0]] = strings.ReplaceAll (prtsCB00 [1], "\n", "")
 		/*--2--*/
 		if (extn + 0) == len (data) {
 			more = false
@@ -87,7 +90,24 @@ func RQST_Sdfy (data []byte) (error, *Rqst) {
 	}
 	/*--1--*/
 	if extn < len (data) {
-		rqst.Core = data [extn:]
+		rqst.Core = data [  extn: ]
+	}
+	/*--1--*/
+	_bc00 := ""
+	for _ , _be00 := range rqst.Hdrr  {
+		_ca00 := strings.ToLower  (_be00)
+		if _ca00 == "cookie" {
+			_bc00 = _be00
+			break
+		}
+	}
+	if _bc00 != "" && rqst.HdrrVlxx [_bc00] != "" {
+		_ca00 := regexp.MustCompile (`; *`).Split (rqst.HdrrVlxx [_bc00], -1)
+		for _ , _cb00 := range _ca00 {
+			_da00 := strings.Split (_cb00, "=")
+			 rqst.Ckxx = append (rqst.Ckxx, _da00 [0])
+			 rqst.CkxxVlxx [_da00 [0]]  =   _da00 [1]
+		}
 	}
 	/*--1--*/
 	return nil, rqst
@@ -97,6 +117,9 @@ type Rqst struct {
 	Path     string
 	Vrsn     string
 	Hdrr     []string
-	HdrrVlll map[string]string
+	HdrrVlxx map[string]string
 	Core     []byte
+
+	Ckxx     []string
+	CkxxVlxx map[string]string
 }
