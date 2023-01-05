@@ -42,7 +42,7 @@ func Test_ (t *testing.T) {
 	fmt.Println ("")
 	fmt.Println ("<<<< mssg:", string (_cb00))
 	/*--1--*/
-	_da00, _db00 := RQST_Sdfy (_cb00)
+	_da00, _db00 := RQST_Sdfy  ( _cb00 )
 	if _da00 != nil {
 		fmt.Println (_da00.Error ())
 		return

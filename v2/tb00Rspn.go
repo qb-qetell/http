@@ -4,9 +4,8 @@ import "fmt"
 
 func RSPN_Estb () (*Rspn) {
 	return &Rspn {
-		hdrr: make ([]string, 0),
-		hdrrVlll: make (map[string]string, 0),
-		Core: make ([]byte, 0),
+		Hdrx: make ([][]string, 0),
+		Core: make ([]byte    , 0),
 	}
 }
 
@@ -14,14 +13,15 @@ type Rspn struct {
 	Vrsn     string
 	Code     string
 	Note     string
-	hdrr     []string
-	hdrrVlll map[string]string
+	Hdrx     [][]string
 	Core     []byte
 }
 	// NAME: Insert Header
-	func (sbjc *Rspn) InsrHdrr (name, vlll string) {
-		sbjc.hdrr = append (sbjc.hdrr, name)
-		sbjc.hdrrVlll [name] = vlll
+	func (sbjc *Rspn) InsrHdrr (name, vlxx   string) {
+		sbjc.Hdrx = append (
+			sbjc.Hdrx  ,
+			[]string   {name, vlxx},
+		)
 	}
 	func (sbjc *Rspn) Lqfy () []byte {
 		if sbjc.Vrsn == "" {
@@ -102,9 +102,9 @@ type Rspn struct {
 			sbjc.Note = trnsTbll [sbjc.Code]
 			if sbjc.Note == "" {sbjc.Note = sbjc.Code}
 		}
-		mssg := fmt.Sprintf ("HTTP/%s %s %s", sbjc.Vrsn, sbjc.Code, sbjc.Note)
-		for _, _bb00 := range sbjc.hdrr {
-			mssg = fmt.Sprintf ("%s\r\n%s: %s", mssg, _bb00, sbjc.hdrrVlll [_bb00])
+		mssg := fmt.Sprintf ("HTTP/%s %s %s" , sbjc.Vrsn, sbjc.Code, sbjc.Note)
+		for _, _bb00 := range sbjc.Hdrx {
+			mssg = fmt.Sprintf ("%s\r\n%s: %s", mssg, _bb00 [0], _bb00 [1])
 		}
 		mss2 := []byte (mssg)
 		if len (sbjc.Core) != 0 {
