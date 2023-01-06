@@ -2,6 +2,7 @@ package http
 
 import "fmt"
 import "testing"
+import "time"
 
 func Test_ (t *testing.T) {
 	rqstt := `POST / HTTP/1.1
@@ -53,4 +54,28 @@ func Test_ (t *testing.T) {
 	fmt.Println (">>>> hdrr:",          _db00.Hdrr)
 	fmt.Println (">>>> vlll:",      _db00.HdrrVlxx)
 	fmt.Println (">>>> core:", string (_db00.Core))
+	/*--1--*/
+	fmt.Println ("")
+	_ea00    :=  CKXX_Estb   ( "name" )
+	_ea00.SetxVlxx ( "Vlxx"  )
+	_, _ea01 := _ea00.Lqfy   (        )
+	fmt.Println (">>>> stg1:",               _ea01)
+	_ea00.SetxDmnx ( "Vlxx"  )
+	_, _ea02 := _ea00.Lqfy   (        )
+	fmt.Println (">>>> stg2:",               _ea02)
+	_ea00.SetxPath ( "Vlxx"  )
+	_, _ea03 := _ea00.Lqfy   (        )
+	fmt.Println (">>>> stg3:",               _ea03)
+	_ea00.EnfrScrt (         )
+	_, _ea04 := _ea00.Lqfy   (        )
+	fmt.Println (">>>> stg4:",               _ea04)
+	_ea00.SetxETXX (time.Second  *  60)
+	_, _ea05 := _ea00.Lqfy   (        )
+	fmt.Println (">>>> stg5:",               _ea05)
+	_ea00.EnfrHOXX (         )
+	_, _ea06 := _ea00.Lqfy   (        )
+	fmt.Println (">>>> stg6:",               _ea06)
+	_ea00.EnfrSSXX (         )
+	_, _ea07 := _ea00.Lqfy   (        )
+	fmt.Println (">>>> stg7:",               _ea07)
 }
